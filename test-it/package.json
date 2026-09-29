@@ -1,0 +1,15 @@
+{
+  "name": "test-it",
+  "version": "2.0.0",
+  "private": true,
+  "description": "test.it: paste a Solana token address and an AI engineer tries the tech it claims (browser, APIs, code, sandbox builds) and reports whether it works.",
+  "type": "module",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "test": "node --test test/*.test.js"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
