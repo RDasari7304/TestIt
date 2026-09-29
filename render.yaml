@@ -1,0 +1,18 @@
+# Render Blueprint: New > Blueprint > pick this repo. Free plan, Docker runtime.
+services:
+  - type: web
+    name: test-it
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: GITHUB_TOKEN
+        sync: false
+      - key: SOLANA_RPC_URL
+        sync: false
+      - key: PAYMENTS_DISABLED
+        value: "1"
+      - key: MAX_CONCURRENT
+        value: "1"

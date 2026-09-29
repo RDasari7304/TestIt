@@ -1,0 +1,6 @@
+# Replace with your domain (a free DuckDNS subdomain works). Caddy gets HTTPS
+# certificates automatically and streams the live progress (SSE) correctly.
+yourname.duckdns.org {
+	encode gzip
+	reverse_proxy 127.0.0.1:3001
+}

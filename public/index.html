@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>test.it</title>
+  <meta name="description" content="Paste a Solana token address. test.it tries the tech it claims and tells you if it works." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2314b8a6'/><path d='M9 16.5l4.5 4.5L23 11' stroke='white' stroke-width='3.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-inner">
+      <a class="brand" href="/"><span class="logo" aria-hidden="true">✓</span><span>test<span class="dot-it">.it</span></span></a>
+      <div class="top-right">
+        <div id="health" class="health" aria-live="polite"></div>
+        <div class="wallet-wrap">
+          <button type="button" id="wallet-btn" class="ghost wallet-btn" hidden>Connect wallet</button>
+          <div id="wallet-menu" class="wallet-menu" hidden></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>Does the tech behind this token actually work?</h1>
+      <p class="lede">Paste a Solana contract address. test.it finds the project's app, code and backend, then an AI engineer uses it in a real browser, calls its APIs, reads and builds its code, and reports back with evidence.</p>
+
+      <form id="form" class="form" autocomplete="off">
+        <label class="field">
+          <span class="field-label">Contract address (CA)</span>
+          <div class="input-row">
+            <input id="ca" name="ca" spellcheck="false" placeholder="e.g. HeLp6NuQkmYB4pYWo2zYs22mESHXPQYzXbB8n4V98jwC" required />
+            <button type="button" id="paste" class="ghost">Paste</button>
+          </div>
+          <span id="ca-hint" class="hint"></span>
+        </label>
+
+        <fieldset class="modes">
+          <legend class="field-label">Test depth</legend>
+          <label class="mode">
+            <input type="radio" name="mode" value="fast" />
+            <span class="mode-body">
+              <span class="mode-title">Fast <em><span>~1–2 min</span><span class="price" data-mode="fast"></span></em></span>
+              <span class="mode-desc">A quick real test: opens the app, tries its main feature or API, checks the key claim and looks for the code.</span>
+            </span>
+          </label>
+          <label class="mode">
+            <input type="radio" name="mode" value="probe" checked />
+            <span class="mode-body">
+              <span class="mode-title">Probe <em><span>3–6 min</span><span class="price" data-mode="probe"></span></em></span>
+              <span class="mode-desc">Clicks through the app in a real browser, reads its JavaScript for hidden APIs and calls them, hunts down and reads the source, checks on-chain claims.</span>
+            </span>
+          </label>
+          <label class="mode">
+            <input type="radio" name="mode" value="build" />
+            <span class="mode-body">
+              <span class="mode-title">Build <em><span>5–12 min</span><span class="price" data-mode="build"></span></em></span>
+              <span class="mode-desc">Everything in Probe, plus downloading the full source code and having the AI read through it to check what is really built, what is mocked or missing, and whether anything is leaked.</span>
+            </span>
+          </label>
+        </fieldset>
+
+        <div class="actions">
+          <button type="submit" id="go" class="primary">Test it</button>
+          <button type="button" id="cancel" class="ghost" hidden>Cancel</button>
+          <button type="button" id="retry" class="ghost" hidden></button>
+        </div>
+        <p id="pay-status" class="pay-status" hidden></p>
+      </form>
+    </section>
+
+    <section id="run" class="run" hidden>
+      <div class="panel steps-panel">
+        <h2 class="panel-title">Progress</h2>
+        <ol id="steps" class="steps"></ol>
+      </div>
+      <div class="panel feed-panel">
+        <h2 class="panel-title">Live testing <span id="feed-count" class="count"></span></h2>
+        <ul id="feed" class="feed"><li class="feed-empty">Every action the AI takes — pages opened, buttons clicked, APIs called, code read — shows up here.</li></ul>
+      </div>
+    </section>
+
+    <div id="error" class="error" role="alert" hidden></div>
+    <section id="report" class="report" hidden></section>
+  </main>
+
+  <div id="lightbox" class="lightbox" hidden><img alt="" /><p></p></div>
+
+  <footer class="foot wrap">
+    <p>test.it checks whether technology works. It is not financial advice and says nothing about price. Automated testing can be fooled; verify anything important yourself.</p>
+  </footer>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

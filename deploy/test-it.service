@@ -1,0 +1,18 @@
+# systemd service for a VM deployment (Oracle Cloud Always Free, etc.)
+# sudo cp deploy/test-it.service /etc/systemd/system/ && sudo systemctl enable --now test-it
+[Unit]
+Description=test.it
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/test-it
+ExecStart=/usr/bin/node server/index.js
+Restart=always
+RestartSec=5
+# Caddy on the same machine handles HTTPS and forwards to 127.0.0.1:3001
+Environment=HOST=127.0.0.1
+
+[Install]
+WantedBy=multi-user.target
